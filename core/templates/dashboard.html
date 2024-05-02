@@ -3,6 +3,49 @@
 {% block content %}
 
 
-TESTE
+<div class="min-h-screen pt-8">
+    <div>
+        <h1 class="font-bold text-5xl text-center">
+            Análise de Dados ShopMD
+        </h1>
+        <div class="mt-10 p-5 max-w-7xl mx-auto space-y-7">
+            <div class="flex space-x-7">
+
+
+                <div>
+                    <label for="data" class="font-bold text-sm"> Período:</label>
+                    <input type="date"  class="rounded-xl block bg-gray-100 font-semibold text-center text-indigo-600 border-indigo-600 cursor-pointer">
+                </div>
+
+                <div>
+                    <label for="total" class="font-bold text-sm">Total de Acessos:</label>
+                    <input type="text" value="55" disabled class="rounded-xl block bg-gray-100 font-semibold w-24 text-center text-indigo-600 border-indigo-600">
+                </div>
+                
+            </div>
+
+            <div class="lg:flex lg:space-x-7 space-y-7 lg:space-y-0">
+                <div class="bg-gray-300 h-96 mx-auto w-11/12 lg:w-1/2 border rounded-xl shadow-xl">
+                    Produtos mais acessados
+                </div>
+                <div class="bg-gray-300 h-96 mx-auto w-11/12 lg:w-1/2 border rounded-xl shadow-xl">
+                    Influencers com mais acessos
+                </div>
+            </div>
+
+            <div class="lg:flex lg:space-x-7 space-y-7 lg:space-y-0">
+                <div class="bg-gray-300 h-96 mx-auto w-11/12 lg:w-1/2 border rounded-xl shadow-xl">
+                    Revenda com mais acessos
+                </div>
+                <div class="bg-gray-300 h-96 mx-auto w-11/12 lg:w-1/2 border rounded-xl shadow-xl">
+                    Influencers que mais converteram acesso
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 {% endblock %}
