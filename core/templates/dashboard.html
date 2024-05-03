@@ -12,40 +12,155 @@
             <div class="flex space-x-7">
 
 
-                <div>
-                    <label for="data" class="font-bold text-sm"> Período:</label>
-                    <input type="date"  class="rounded-xl block bg-gray-100 font-semibold text-center text-indigo-600 border-indigo-600 cursor-pointer">
+                <div class="flex space-x-7">
+                    <div>
+                        <label for="data" class="font-bold text-sm"> De:</label>
+                        <input type="date"  class="rounded-xl block bg-gray-100 font-semibold text-center text-indigo-600 border-indigo-600 cursor-pointer">
+                    </div>
+                    <div>
+                        <label for="data" class="font-bold text-sm"> Até:</label>
+                        <input type="date"  class="rounded-xl block bg-gray-100 font-semibold text-center text-indigo-600 border-indigo-600 cursor-pointer">
+                    </div>
                 </div>
 
                 <div>
                     <label for="total" class="font-bold text-sm">Total de Acessos:</label>
-                    <input type="text" value="55" disabled class="rounded-xl block bg-gray-100 font-semibold w-24 text-center text-indigo-600 border-indigo-600">
+                    <input type="text" value="183" disabled class="rounded-xl block bg-gray-100 font-semibold w-24 text-center text-indigo-600 border-indigo-600">
                 </div>
                 
             </div>
+            
 
-            <div class="lg:flex lg:space-x-7 space-y-7 lg:space-y-0">
-                <div class="bg-gray-300 h-96 mx-auto w-11/12 lg:w-1/2 border rounded-xl shadow-xl">
-                    Produtos mais acessados
+            <div class="lg:flex lg:space-x-7 space-y-7 lg:space-y-0 h-[400px]">
+                <div class="bg-[#21242e] mx-auto w-11/12 lg:w-1/2 border rounded-xl shadow-xl p-2 flex items-center justify-center">
+                    <canvas id="produtos-mais-acessados"></canvas>
                 </div>
-                <div class="bg-gray-300 h-96 mx-auto w-11/12 lg:w-1/2 border rounded-xl shadow-xl">
-                    Influencers com mais acessos
+                <div class="bg-[#21242e] mx-auto w-11/12 lg:w-1/2 border rounded-xl shadow-xl p-2 flex items-center justify-center">
+                    <canvas id="influencers-mais-acessados"></canvas>
                 </div>
             </div>
 
-            <div class="lg:flex lg:space-x-7 space-y-7 lg:space-y-0">
-                <div class="bg-gray-300 h-96 mx-auto w-11/12 lg:w-1/2 border rounded-xl shadow-xl">
-                    Revenda com mais acessos
+            <div class="lg:flex lg:space-x-7 space-y-7 lg:space-y-0 h-[400px]">
+                
+                <div class="bg-[#21242e] mx-auto w-11/12 lg:w-1/2 border rounded-xl shadow-xl p-2 flex items-center justify-center">
+                    <canvas  id="revendas-mais-acessadas"></canvas>
                 </div>
-                <div class="bg-gray-300 h-96 mx-auto w-11/12 lg:w-1/2 border rounded-xl shadow-xl">
-                    Influencers que mais converteram acesso
+
+                <div class="bg-[#21242e] mx-auto w-11/12 lg:w-1/2 border rounded-xl shadow-xl p-2 flex items-center justify-center">
+                    <canvas id="influencers-mais-venderam"></canvas>
                 </div>
             </div>
-
         </div>
-
     </div>
-
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const influencersMaisAcessados = document.querySelector('#influencers-mais-acessados')
+    const influencersMaisVenderam = document.querySelector('#influencers-mais-venderam')
+    const revendasMaisAcessadas = document.querySelector('#revendas-mais-acessadas')
+    const produtosMaisAcessados = document.querySelector('#produtos-mais-acessados')
+
+    function geradorDeCores(qtd=1){
+
+        var bg_color = []
+        var border_color = []
+        for(let i = 0; i<qtd; i++){
+            let r = Math.random() * 255;
+            let g = Math.random() * 255;
+            let b = Math.random() * 255;
+            bg_color.push(`rgba(${r}, ${g}, ${b}, ${0.3})`)
+            border_color.push(`rgba(${r}, ${g}, ${b}, ${1})`)
+        }
+        return [bg_color, border_color];
+    };
+
+    function renderiza_produtos_mais_acessados(){
+        const ctx = produtosMaisAcessados.getContext('2d');
+        var cores_produtos_mais_acessados = geradorDeCores(qtd=12)
+        const myChart = new Chart(ctx, {
+            type:'bar',
+            data: {
+                labels:['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                datasets: [{
+                    label: 'Produtos Mais Vendidos',
+                    data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3],
+                    backgroundColor: cores_produtos_mais_acessados[0],
+                    borderColor: cores_produtos_mais_acessados[1],
+                    borderWidth: 1,
+                }]
+            }
+        })
+    }
+
+
+    function renderiza_revendas_mais_acessados(){
+        const ctx = revendasMaisAcessadas.getContext('2d');
+        var cores_revendas_mais_acessados = geradorDeCores(qtd=5)
+        const myChart = new Chart(ctx, {
+            type:'doughnut',
+            data: {
+                labels:['MedJet', 'Tato', 'Ribermédica', 'Medical', 'Sinete'],
+                datasets: [{
+                    label: 'Revendas Mais Acessadas',
+                    data: [30, 21, 14, 17, 26],
+                    backgroundColor: cores_revendas_mais_acessados[0],
+                    borderColor: cores_revendas_mais_acessados[1],
+                    borderWidth: 1,
+                }]
+            }
+        })
+    }
+
+    function renderiza_influencers_mais_acessados(){
+        const ctx = influencersMaisAcessados.getContext('2d');
+        var cores_influencers_mais_acessados = geradorDeCores(qtd=5)
+        const myChart = new Chart(ctx, {
+            type:'line',
+            data: {
+                labels:['João', 'Maria', 'José', 'Carlos', 'Ana'],
+                datasets: [{
+                    label: 'influencers Mais Acessadas',
+                    data: [2, 12, 15, 4, 10],
+                    backgroundColor: cores_influencers_mais_acessados[0],
+                    borderColor: cores_influencers_mais_acessados[1],
+                    borderWidth: 1,
+                }]
+            }
+        })
+    }
+
+    function renderiza_influencers_mais_venderam(){
+        const ctx = influencersMaisVenderam.getContext('2d');
+        var cores_influencers_mais_venderam = geradorDeCores(qtd=12)
+        const myChart = new Chart(ctx, {
+            type:'polarArea',
+            data: {
+                labels:['João', 'Maria', 'José', 'Carlos', 'Ana'],
+                datasets: [{
+                    label: 'Produtos Mais Vendidos',
+                    data: [12, 19, 15, 8, 10],
+                    backgroundColor: cores_influencers_mais_venderam[0],
+                    borderColor: cores_influencers_mais_venderam[1],
+                    borderWidth: 1,
+                }]
+            }
+        })
+    }
+    renderiza_produtos_mais_acessados()
+    renderiza_revendas_mais_acessados()
+    renderiza_influencers_mais_acessados()
+    renderiza_influencers_mais_venderam()
+
+
+    
+</script>
+
+
+
+
+
+
+
 
 {% endblock %}
