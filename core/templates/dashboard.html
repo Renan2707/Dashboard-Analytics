@@ -110,6 +110,13 @@
                     borderColor: cores_produtos_mais_acessados[1],
                     borderWidth: 1,
                 }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
             }
         })
     }
@@ -118,7 +125,7 @@
         const ctx = revendasMaisAcessadas.getContext('2d');
         var cores_revendas_mais_acessados = geradorDeCores(qtd=5)
         const myChart = new Chart(ctx, {
-            type:'doughnut',
+            type:'bar',
             data: {
                 labels:dataRevendasMaisAcessadas,
                 datasets: [{
@@ -128,7 +135,16 @@
                     borderColor: cores_revendas_mais_acessados[1],
                     borderWidth: 1,
                 }]
-            }
+            },
+            options: {
+                indexAxis: 'y',
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+              }
+              
         })
     }
 
@@ -146,6 +162,13 @@
                     borderColor: cores_influencers_mais_acessados[1],
                     borderWidth: 1,
                 }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
             }
         })
     }
@@ -154,7 +177,7 @@
         const ctx = influencersMaisVenderam.getContext('2d');
         var cores_influencers_mais_venderam = geradorDeCores(qtd=12)
         const myChart = new Chart(ctx, {
-            type:'polarArea',
+            type:'pie',
             data: {
                 labels:dataInfluencers,
                 datasets: [{
@@ -164,6 +187,13 @@
                     borderColor: cores_influencers_mais_venderam[1],
                     borderWidth: 1,
                 }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    }
+                }
             }
         })
     }
