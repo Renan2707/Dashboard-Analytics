@@ -71,8 +71,19 @@
     const revendasMaisAcessadas = document.querySelector('#revendas-mais-acessadas')
     const produtosMaisAcessados = document.querySelector('#produtos-mais-acessados')
 
-    function geradorDeCores(qtd=1){
 
+    const dataInfluencers = ['João', 'Maria', 'José', 'Carlos', 'Ana'] 
+    const valoresInfluencersMaisAcessados = [2, 12, 5, 10, 6]
+    const valoresInfluencersMaisVenderam = [12, 19, 15, 8, 10]
+
+    const dataRevendasMaisAcessadas = ['MedJet', 'Tato', 'Ribermédica', 'Medical', 'Sinete']
+    const valoresRevendasMaisAcessadas = [30, 21, 14, 17, 26]
+
+    const dataProdutosMaisAcessados = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out','Nov','Dez']
+    const valoresProdutosMaisAcessados = [12, 19, 23, 15, 22, 10, 7, 17, 13, 5, 18, 8]
+
+
+    function geradorDeCores(qtd=1){
         var bg_color = []
         var border_color = []
         for(let i = 0; i<qtd; i++){
@@ -91,10 +102,10 @@
         const myChart = new Chart(ctx, {
             type:'bar',
             data: {
-                labels:['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out','Nov','Dez'],
+                labels:dataProdutosMaisAcessados,
                 datasets: [{
                     label: 'Produtos Mais Acessados',
-                    data: [12, 19, 23, 15, 22, 10, 7, 17, 13, 5, 18, 8],
+                    data: valoresProdutosMaisAcessados,
                     backgroundColor: cores_produtos_mais_acessados[0],
                     borderColor: cores_produtos_mais_acessados[1],
                     borderWidth: 1,
@@ -103,17 +114,16 @@
         })
     }
 
-
     function renderiza_revendas_mais_acessados(){
         const ctx = revendasMaisAcessadas.getContext('2d');
         var cores_revendas_mais_acessados = geradorDeCores(qtd=5)
         const myChart = new Chart(ctx, {
             type:'doughnut',
             data: {
-                labels:['MedJet', 'Tato', 'Ribermédica', 'Medical', 'Sinete'],
+                labels:dataRevendasMaisAcessadas,
                 datasets: [{
                     label: 'Revendas Mais Acessadas',
-                    data: [30, 21, 14, 17, 26],
+                    data: valoresRevendasMaisAcessadas,
                     backgroundColor: cores_revendas_mais_acessados[0],
                     borderColor: cores_revendas_mais_acessados[1],
                     borderWidth: 1,
@@ -128,10 +138,10 @@
         const myChart = new Chart(ctx, {
             type:'line',
             data: {
-                labels:['João', 'Maria', 'José', 'Carlos', 'Ana'],
+                labels:dataInfluencers,
                 datasets: [{
                     label: 'influencers Mais Acessadas',
-                    data: [2, 12, 5, 10, 6],
+                    data: valoresInfluencersMaisAcessados,
                     backgroundColor: cores_influencers_mais_acessados[0],
                     borderColor: cores_influencers_mais_acessados[1],
                     borderWidth: 1,
@@ -146,10 +156,10 @@
         const myChart = new Chart(ctx, {
             type:'polarArea',
             data: {
-                labels:['João', 'Maria', 'José', 'Carlos', 'Ana'],
+                labels:dataInfluencers,
                 datasets: [{
                     label: 'Influencers que mais venderam',
-                    data: [12, 19, 15, 8, 10],
+                    data: valoresInfluencersMaisVenderam,
                     backgroundColor: cores_influencers_mais_venderam[0],
                     borderColor: cores_influencers_mais_venderam[1],
                     borderWidth: 1,
